@@ -1,66 +1,94 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laris.in - Sistem Penjualan Titip Jual Berbasis Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Laris.in** adalah sistem web berbasis Laravel yang dirancang untuk membantu pelaku usaha makanan ringan dalam mengelola penjualan dengan model **titip jual**. Sistem ini memberikan solusi sederhana dan efisien untuk pencatatan titip jual, pengelolaan pengeluaran, serta laporan keuangan secara menyeluruh. Laris.in memungkinkan pemilik usaha untuk memantau penjualan barang, retur, dan beban usaha dengan mudah, serta memperoleh laporan yang jelas untuk membuat keputusan bisnis yang lebih baik.
 
-## About Laravel
+## Fitur Utama
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. **Manajemen Titip Jual**
+   - Pencatatan barang yang dititipkan ke toko/warung.
+   - Pengelolaan transaksi titip jual, termasuk jumlah barang yang terjual dan retur.
+   - Menghitung pendapatan bersih setelah penjualan dan retur.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. **Pencatatan Pengeluaran**
+   - Mencatat pengeluaran usaha seperti pembelian bahan baku, biaya operasional, dan transportasi.
+   - Kategori pengeluaran terintegrasi dengan **Chart of Accounts (COA)** untuk laporan keuangan yang lebih jelas.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. **Manajemen Barang Retur**
+   - Barang yang tidak laku bisa dikembalikan ke stok, diolah menjadi produk baru, atau dihitung sebagai kerugian.
+   - Sistem secara otomatis menghitung kerugian atau pendapatan tambahan berdasarkan keputusan pengolahan retur.
 
-## Learning Laravel
+4. **Laporan Keuangan Lengkap**
+   - **Laporan Laba Rugi**: Menampilkan pendapatan, pengeluaran, dan laba bersih dalam periode tertentu.
+   - **Neraca Keuangan**: Menampilkan aset, liabilitas, dan ekuitas.
+   - **Laporan Penjualan**: Detail transaksi titip jual, termasuk barang yang terjual dan yang dikembalikan.
+   
+5. **Multi-User Support**
+   - Fitur pengguna dengan hak akses berbeda, seperti pemilik usaha atau karyawan, untuk mengelola data dan transaksi.
+   
+6. **Ekspor Laporan**
+   - Laporan dapat diekspor dalam format PDF atau Excel untuk memudahkan analisis lebih lanjut atau arsip.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Teknologi yang Digunakan
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Framework**: Laravel 10
+- **Database**: MySQL
+- **Frontend**: Blade Templating Engine
+- **Library Tambahan**:
+  - **DataTables** untuk pengelolaan tabel dinamis.
+  - **DomPDF** untuk mengekspor laporan ke PDF.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Cara Instalasi
 
-## Laravel Sponsors
+### Prasyarat
+- PHP >= 8.0
+- Composer
+- MySQL
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Langkah-langkah Instalasi
 
-### Premium Partners
+1. **Clone Repositori**:
+   ```bash
+   git clone https://github.com/username/laris.in.git
+   cd laris.in
+2. **Instal Dependensi:**
+   ```bash
+   Instal dependensi PHP menggunakan Composer:
+   composer install
+   npm install && npm run dev
+3. **Konfigurasi File .env**
+   ````bash
+   Salin file .env.example menjadi .env
+   cp .env.example .env
+   Set konfigurasi database di file .env.
+4. **Generate Kunci Aplikasi:**
+   ````bash
+   php artisan key:generate
+5. **Migrasi Database:**
+   ````bash
+   php artisan migrate --seed
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Penggunaan
+Setelah berhasil menginstal dan menjalankan aplikasi, Anda dapat:
 
-## Contributing
+- Login dengan akun admin (akun pertama yang dibuat).
+- Menambahkan data barang, toko/warung, dan mencatat transaksi titip jual.
+- Mencatat pengeluaran dan barang retur.
+- Mengakses laporan keuangan untuk mendapatkan gambaran keseluruhan kinerja usaha.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Kontribusi
+1. **Langkah-langkah untuk Berkontribusi:**
+   ```bash
+   Fork repositori ini.
+   Buat branch baru untuk fitur atau perbaikan yang Anda buat.
+   Kirim pull request dengan penjelasan tentang perubahan yang dilakukan.
 
-## Code of Conduct
+## Lisensi
+Proyek ini dilisensikan di bawah **MIT License.**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Kontak
+Jika Anda memiliki pertanyaan atau saran, silakan hubungi kami di email: fajar@rndweb.my.id
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Deskripsi ini sudah lengkap untuk kebutuhan proyek **Laris.in** Anda. Anda hanya perlu mengganti bagian `username` pada URL repositori GitHub dan menyesuaikan jika diperlukan. Selamat mencoba! 😊
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
