@@ -25,6 +25,6 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // $this->call(UserSeeder::class);
+        $this->call(CompanySeeder::class);
     }
 }

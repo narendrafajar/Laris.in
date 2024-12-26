@@ -40,3 +40,7 @@ function messageAlert(message, isError = false) {
 function refreshPage() {
     location.reload(true); // Menggunakan metode reload dengan menghapus cache (parameter true)
 }
+
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })

@@ -191,9 +191,9 @@ Circles.create({
 
 //Notify
 $.notify({
-	icon: 'icon-bell',
-	title: 'Kaiadmin',
-	message: 'Premium Bootstrap 5 Admin Dashboard',
+	icon: 'icon-check',
+	title: 'Laris.in',
+	message: 'Selamat Datang, Selamat Bekerja!',
 },{
 	type: 'secondary',
 	placement: {
