@@ -39,7 +39,7 @@
                 <div class="card-header"><h4>{{__('Daftar Produk / Barang')}}</h4></div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table id="{{ $data['tables'][0] }}" class="table table-bordered datatable-class">
                             <thead>
                                 <tr>
                                     <th class="text-center">{{__('No. ')}}</th>
@@ -76,10 +76,9 @@
                                                     </button>
                                                     <ul class="dropdown-menu" role="menu">
                                                       <li>
-                                                        <a class="dropdown-item" href="#">Comming Soon ...</a>
-                                                        <a class="dropdown-item" href="#">Comming Soon ...</a>
+                                                        <a class="dropdown-item" href="#">{{__('Ubah')}}</a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#">Comming Soon ...</a
+                                                        <a class="dropdown-item text-danger" href="#">{{__('Hapus')}}</a
                                                         >
                                                       </li>
                                                     </ul>
@@ -94,11 +93,11 @@
                         </table>
                     </div>
                 </div>
-                @if(isset($data['main']) && count($data['main']) > 0)
+                {{-- @if(isset($data['main']) && count($data['main']) > 0)
                 <div class="card-footer d-flex align-items-center">
-                    {{ $data['main']->links('vendor.pagination.bootstrap-5')}}
+                    {{ $data['main']->links('vendor.pagination.default')}}
                 </div>
-                @endif	
+                @endif	 --}}
             </div>
         </div>
     </div>

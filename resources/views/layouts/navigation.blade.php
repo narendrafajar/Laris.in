@@ -28,10 +28,7 @@
         <ul class="nav nav-secondary">
           <li class="nav-item active">
             <a
-              data-bs-toggle="collapse"
-              href="#dashboard"
-              class="collapsed"
-              aria-expanded="false"
+              href="{{route('dashboard')}}"
             >
               <i class="fas fa-home"></i>
               <p>{{__('Beranda')}}</p>
@@ -57,7 +54,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="components/avatars.html">
+                  <a href="{{route('kontak')}}">
                     <span class="sub-item">{{__('Kontak')}}</span>
                   </a>
                 </li>

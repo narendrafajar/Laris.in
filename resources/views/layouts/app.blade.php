@@ -75,7 +75,7 @@
                             <div class="quick-actions-scroll scrollbar-outer">
                                 <div class="quick-actions-items">
                                 <div class="row m-0">
-                                    <a class="col-6 col-md-4 p-0" href="#">
+                                    <a class="col-6 col-md-4 p-0" href="{{route('kontak')}}">
                                     <div class="quick-actions-item">
                                         <div
                                         class="avatar-item bg-warning rounded-circle"
@@ -85,7 +85,7 @@
                                         <span class="text">{{__('Kontak')}}</span>
                                     </div>
                                     </a>
-                                    <a class="col-6 col-md-4 p-0" href="#">
+                                    <a class="col-6 col-md-4 p-0" href="{{route('product')}}">
                                     <div class="quick-actions-item">
                                         <div
                                         class="avatar-item bg-danger rounded-circle"
@@ -159,10 +159,17 @@
                                 </li>
                                 <li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-center" href="#">
-                                <i class="fas fa-sign-out-alt"></i>
-                                {{__('Logout')}}
-                                </a>
+                                
+                                <form method="POST" action="{{ route('logout') }}" class="text-center">
+                                    @csrf
+            
+                                    <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                                        <i class="fas fa-sign-out-alt"></i>
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
                                 </li>
                             </div>
                             </ul>
@@ -226,7 +233,7 @@
 
         <!-- Kaiadmin DEMO methods, don't include it in your project! -->
         <script src="{{asset('larisin/js/setting-demo.js')}}"></script>
-        <script src="{{asset('larisin/js/demo.js')}}"></script>
+        <script src="{{asset('larisin/js/kaiadmin.js')}}"></script>
         <script src="{{asset('larisin/js/larisin.js')}}"></script>
         <script>
         $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
