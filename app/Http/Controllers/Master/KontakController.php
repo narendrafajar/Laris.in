@@ -59,7 +59,7 @@ class KontakController extends Controller
                 'contact_address' => $request->kontakalamat,
                 'contact_number_1' => $request->kontaknumber1,
                 'contact_number_2' => $request->kontaknumber2,
-                'latitude' => $request->latitude,
+                'lattitude' => $request->latitude,
                 'longitude' => $request->longitude,
             ]);
 

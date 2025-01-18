@@ -19,7 +19,7 @@
                 "Font Awesome 5 Brands",
                 "simple-line-icons",
             ],
-            urls: ["larisin/css/fonts.min.css"],
+            urls: ["{{ asset('larisin/css/fonts.min.css') }}"],
             },
             active: function () {
             sessionStorage.fonts = true;
@@ -29,12 +29,13 @@
 
         <!-- CSS Files -->
         <link rel="stylesheet" href="{{asset('larisin/css/bootstrap.min.css')}}" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('larisin/css/plugins.min.css')}}" />
         <link rel="stylesheet" href="{{asset('larisin/css/kaiadmin.min.css')}}" />
 
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link rel="stylesheet" href="{{asset('larisin/css/kaiadmin.css')}}" />
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     </head>
     <body class="font-sans antialiased">
         <div class="wrapper">
@@ -95,17 +96,27 @@
                                         <span class="text">{{__('Produk / Barang')}}</span>
                                     </div>
                                     </a>
-                                    <a class="col-6 col-md-4 p-0" href="#">
-                                    <div class="quick-actions-item">
-                                        <div
-                                        class="avatar-item bg-primary rounded-circle"
-                                        >
-                                        <i class="fas fa-file-invoice-dollar"></i>
+                                    <a class="col-6 col-md-4 p-0" href="{{route('jual_langsung')}}">
+                                        <div class="quick-actions-item">
+                                            <div
+                                            class="avatar-item bg-success rounded-circle"
+                                            >
+                                            <i class="fas fa-donate"></i>
+                                            </div>
+                                            <span class="text">{{__('Penjualan Langsung')}}</span>
                                         </div>
-                                        <span class="text">{{__('Penjualan')}}</span>
-                                    </div>
                                     </a>
-                                    <a class="col-6 col-md-4 p-0" href="#">
+                                    <a class="col-6 col-md-4 p-0" href="{{route('jual_titip')}}">
+                                        <div class="quick-actions-item">
+                                            <div
+                                            class="avatar-item bg-info rounded-circle"
+                                            >
+                                            <i class="fas fa-dolly-flatbed"></i>
+                                            </div>
+                                            <span class="text">{{__('Penjualan Titip')}}</span>
+                                        </div>
+                                    </a>
+                                    <a class="col-6 col-md-4 p-0" href="{{route('cost')}}">
                                     <div class="quick-actions-item">
                                         <div
                                         class="avatar-item bg-secondary rounded-circle"
@@ -197,11 +208,41 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+				<div class="modal-content">
+					{{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+					<div class="modal-status bg-danger"></div>
+					<div class="modal-body text-center py-4">
+						<!-- Download SVG icon from http://tabler-icons.io/i/alert-triangle -->
+						<svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 9v2m0 4v.01" /><path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" /></svg>
+						<h3>{{__('Hapus Transaksi')}}</h3>
+						<div class="text-muted">{{__('Anda Akan menghapus')}}</div>
+					</div>
+					<div class="modal-footer">
+						<div class="w-100">
+							<div class="row">
+								<div class="col">
+									<a href="#" class="btn w-100" data-bs-dismiss="modal">
+									{{__('Batal')}}
+									</a>
+								</div>
+								<div class="col">
+									<a onclick="confirmDestroy()" href="#" class="btn btn-danger w-100">
+										{{__('Hapus')}}
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
         {{-- <script src="{{asset('larisin/js/core/jquery-3.7.1.min.js')}}"></script>
         <script src="{{asset('larisin/js/core/popper.min.js')}}"></script> --}}
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
        
         <!-- jQuery Scrollbar -->
         <script src="{{asset('larisin/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
@@ -264,6 +305,7 @@
         });
         
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
          @yield('additional_js')
     </body>
 </html>

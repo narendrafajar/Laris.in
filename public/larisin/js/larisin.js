@@ -1,3 +1,4 @@
+let { deleteRoute, deleteId } = "";
 function messageAlert(message, isError = false) {
     if (!message && !isError) {
         var message = "Data berhasil di-update";
@@ -46,6 +47,7 @@ $('#myModal').on('shown.bs.modal', function () {
   })
 
   $(document).ready(function () {
+    window.pk = 0;
     $("#basic-datatables").DataTable({});
 
     $(".datatable-class").DataTable({
@@ -99,4 +101,93 @@ $('#myModal').on('shown.bs.modal', function () {
         ]);
       $("#addRowModal").modal("hide");
     });
+
+    // select2
+    $('.select2').select2();
   });
+
+// const myModal = document.getElementById('myModal')
+// const myInput = document.getElementById('myInput')
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const numericInputs = document.querySelectorAll('.numeric-input');
+
+    numericInputs.forEach(function (input) {
+        input.addEventListener('input', function () {
+            // Hapus karakter non-numerik
+            let rawValue = this.value.replace(/[^0-9]/g, '');
+
+            // Format ke locale Indonesia
+            let formattedValue = parseInt(rawValue || 0, 10).toLocaleString('id-ID');
+
+            // Set kembali ke input
+            this.value = formattedValue;
+        });
+
+        input.addEventListener('blur', function () {
+            // Jika input kosong, reset ke nilai awal
+            if (!this.value) {
+                this.value = '';
+            }
+        });
+    });
+});
+
+const callDestroyModal = (route) => {
+  $.ajaxSetup({
+      headers: {
+          "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+      },
+  });
+
+  deleteId = route.split("/").pop();
+
+  if (isNaN(deleteId)) {
+      deleteRoute = "";
+      deleteId = "";
+      messageAlert("Terjadi kesalahan pada data yang akan dihapus", 1);
+      return false;
+  }
+
+  deleteRoute = route;
+};
+
+$(document).on("click", ".call-delete-modal", function () {
+  event.preventDefault();
+  window.pk = $(this).data("id");
+  $("#modal-delete").modal("show");
+});
+
+const confirmDestroy = () => {
+  if (deleteRoute == "" || deleteId == "") {
+      messageAlert("Terjadi kesalahan pada data yang akan dihapus", 1);
+      return false;
+  }
+
+  $.ajaxSetup({
+      headers: {
+          "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+      },
+  });
+  deleteId = $('.call-delete-modal').data('id');
+  deleteRoute =  window.location.pathname + "/delete-transaction"
+  // console.log(deleteRoute,deleteId);
+
+  $.ajax({
+      url: deleteRoute,
+      type: "delete",
+      data: {
+          id: deleteId,
+      },
+      success: function (response) {
+          $("#modal-delete").modal("hide");
+          messageAlert(response.message);
+          setTimeout(function () {
+              window.location.href = response.url;
+          }, 1000);
+      },
+      error: function (data) {
+          messageAlert(data.responseJSON.message, 1);
+      },
+  });
+};

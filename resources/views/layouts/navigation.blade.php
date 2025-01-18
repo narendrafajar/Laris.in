@@ -2,11 +2,11 @@
     <div class="sidebar-logo">
       <!-- Logo Header -->
       <div class="logo-header" data-background-color="dark">
-        <a href="index.html" class="logo">
-          <img src="{{asset('storage/larisin.png')}}"
+        <a href="{{route('dashboard')}}" class="logo">
+          <img src="{{asset('storage/new_larisin.png')}}"
             alt="navbar brand"
             class="navbar-brand"
-            height="20"
+            height="40"
           />
         </a>
         <div class="nav-toggle">
@@ -76,9 +76,24 @@
             <div class="collapse" id="sidebarLayouts">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="sidebar-style-2.html">
+                  <a data-bs-toggle="collapse" href="#subnav1">
                     <span class="sub-item">{{__('Penjualan')}}</span>
+                    <span class="caret"></span>
                   </a>
+                  <div class="collapse" id="subnav1">
+                    <ul class="nav nav-collapse subnav">
+                      <li>
+                        <a href="{{route('jual_langsung')}}">
+                          <span class="sub-item">{{__('Penjualan Langsung')}}</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{route('jual_titip')}}">
+                          <span class="sub-item">{{__('Titip Jual')}}</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -92,7 +107,7 @@
             <div class="collapse" id="forms">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="forms/forms.html">
+                  <a href="{{route('cost')}}">
                     <span class="sub-item">{{__('Pembelian / Pencatatan Beban')}}</span>
                   </a>
                 </li>
