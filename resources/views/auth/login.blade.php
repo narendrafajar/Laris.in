@@ -9,7 +9,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header text-center">
-                                <img src="{{asset('storage/new_larisin.png')}}" alt="" width="50%"><br>
+                                <img src="{{asset('storage/TradeHubLogo_new.png')}}" alt="" width="50%"><br>
                             </div>
                             <div class="card-body">
                                 <div class="text-center mb-3">

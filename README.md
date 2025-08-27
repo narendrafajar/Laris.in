@@ -1,6 +1,6 @@
-# Laris.in - Sistem Penjualan Titip Jual Berbasis Laravel
+# TradeHub - Sistem Penjualan Titip Jual Berbasis Laravel
 
-**Laris.in** adalah sistem web berbasis Laravel yang dirancang untuk membantu pelaku usaha makanan ringan dalam mengelola penjualan dengan model **titip jual**. Sistem ini memberikan solusi sederhana dan efisien untuk pencatatan titip jual, pengelolaan pengeluaran, serta laporan keuangan secara menyeluruh. Laris.in memungkinkan pemilik usaha untuk memantau penjualan barang, retur, dan beban usaha dengan mudah, serta memperoleh laporan yang jelas untuk membuat keputusan bisnis yang lebih baik.
+**TradeHub** adalah sistem web berbasis Laravel yang dirancang untuk membantu pelaku usaha makanan ringan dalam mengelola penjualan dengan model **titip jual**. Sistem ini memberikan solusi sederhana dan efisien untuk pencatatan titip jual, pengelolaan pengeluaran, serta laporan keuangan secara menyeluruh. TradeHub memungkinkan pemilik usaha untuk memantau penjualan barang, retur, dan beban usaha dengan mudah, serta memperoleh laporan yang jelas untuk membuat keputusan bisnis yang lebih baik.
 
 ## Fitur Utama
 
@@ -48,8 +48,8 @@
 
 1. **Clone Repositori**:
    ```bash
-   git clone https://github.com/username/laris.in.git
-   cd laris.in
+   git clone https://github.com/username/TradeHub.git
+   cd TradeHub
 2. **Instal Dependensi:**
    ```bash
    Instal dependensi PHP menggunakan Composer:
@@ -89,6 +89,4 @@ Proyek ini dilisensikan di bawah **MIT License.**
 Jika Anda memiliki pertanyaan atau saran, silakan hubungi kami di email: fajar@rndweb.my.id
 
 ---
-
-Deskripsi ini sudah lengkap untuk kebutuhan proyek **Laris.in** Anda. Anda hanya perlu mengganti bagian `username` pada URL repositori GitHub dan menyesuaikan jika diperlukan. Selamat mencoba! 😊
 
