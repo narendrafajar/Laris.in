@@ -177,7 +177,6 @@
                                     <x-dropdown-link :href="route('logout')"
                                             onclick="event.preventDefault();
                                                         this.closest('form').submit();">
-                                                        <i class="fas fa-sign-out-alt"></i>
                                         {{ __('Log Out') }}
                                     </x-dropdown-link>
                                 </form>

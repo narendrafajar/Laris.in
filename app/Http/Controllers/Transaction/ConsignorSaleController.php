@@ -32,7 +32,7 @@ class ConsignorSaleController extends Controller
         DetailConsignorSale $detail,
     )
     {
-        $this->perPage = 15;
+        $this->perPage = 50;
         $this->kontak = $kontak;
         $this->titipJual = $titipJual;
         $this->company = $company;
@@ -44,7 +44,7 @@ class ConsignorSaleController extends Controller
     {
 
         $data['tables'] = $this->tables;
-        $data['main'] = $this->titipJual->paginate($this->perPage);
+        $data['main'] = $this->titipJual->latest()->paginate($this->perPage);
         foreach ($data['main'] as $key => $value) {
             $idConsignor = $value->id;
             $totalPenjualan = 0;
@@ -187,7 +187,31 @@ class ConsignorSaleController extends Controller
      */
     public function destroy(ConsignorSale $consignorSale)
     {
-        //
+        // dd($request->all());
+        $findTransaction = $this->titipJual->find($request->id);
+        if($findTransaction){
+            $deleteTransaction = DB::transaction(function() use ($findTransaction){
+
+                if($findTransaction){
+                    $getDetail = $this->detailTitip->where('consignor_id',$findTransaction->id)->delete();
+                    $findTransaction->delete();
+                    return $findTransaction->id;
+                }
+            });
+
+            if($deleteTransaction){
+                return response()->json([
+                    'message' => 'Transaksi berhasil dihapus',
+                    'url' => '/consignor-sale'
+                ]);
+            }
+            return response()->json([
+                'message' => 'Transaksi gagal dihapus'
+            ], 400);
+        }
+        return response()->json([
+            'message' => 'Transaksi tidak ditemukan'
+        ], 404);
     }
 
     public function detail_consignors($id)
@@ -216,32 +240,32 @@ class ConsignorSaleController extends Controller
         return $getNextNumberCode;
     }
 
-    public function delete(Request $request)
-    {
-        // dd($request->all());
-        $findTransaction = $this->titipJual->find($request->id);
-        if($findTransaction){
-            $deleteTransaction = DB::transaction(function() use ($findTransaction){
+    // public function delete(Request $request)
+    // {
+    //     // dd($request->all());
+    //     $findTransaction = $this->titipJual->find($request->id);
+    //     if($findTransaction){
+    //         $deleteTransaction = DB::transaction(function() use ($findTransaction){
 
-                if($findTransaction){
-                    $getDetail = $this->detailTitip->where('consignor_id',$findTransaction->id)->delete();
-                    $findTransaction->delete();
-                    return $findTransaction->id;
-                }
-            });
+    //             if($findTransaction){
+    //                 $getDetail = $this->detailTitip->where('consignor_id',$findTransaction->id)->delete();
+    //                 $findTransaction->delete();
+    //                 return $findTransaction->id;
+    //             }
+    //         });
 
-            if($deleteTransaction){
-                return response()->json([
-                    'message' => 'Transaksi berhasil dihapus',
-                    'url' => '/consignor-sale'
-                ]);
-            }
-            return response()->json([
-                'message' => 'Transaksi gagal dihapus'
-            ], 400);
-        }
-        return response()->json([
-            'message' => 'Transaksi tidak ditemukan'
-        ], 404);
-    }
+    //         if($deleteTransaction){
+    //             return response()->json([
+    //                 'message' => 'Transaksi berhasil dihapus',
+    //                 'url' => '/consignor-sale'
+    //             ]);
+    //         }
+    //         return response()->json([
+    //             'message' => 'Transaksi gagal dihapus'
+    //         ], 400);
+    //     }
+    //     return response()->json([
+    //         'message' => 'Transaksi tidak ditemukan'
+    //     ], 404);
+    // }
 }

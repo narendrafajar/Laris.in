@@ -105,9 +105,32 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product, Request $request)
     {
-        //
+        // dd($request->all());
+        $findTransaction = $this->product->find($request->id);
+        if($findTransaction){
+            $deleteTransaction = DB::transaction(function() use ($findTransaction){
+
+                if($findTransaction){
+                    $findTransaction->delete();
+                    return $findTransaction->id;
+                }
+            });
+
+            if($deleteTransaction){
+                return response()->json([
+                    'message' => 'Produk berhasil dihapus',
+                    'url' => '/consignor-sale'
+                ]);
+            }
+            return response()->json([
+                'message' => 'Produk gagal dihapus'
+            ], 400);
+        }
+        return response()->json([
+            'message' => 'Produk tidak ditemukan'
+        ], 404);
     }
 
     public function getCodeByCompany($idCompany)

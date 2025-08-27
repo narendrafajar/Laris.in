@@ -78,7 +78,7 @@
                                                       <li>
                                                         <a class="dropdown-item" href="#">{{__('Ubah')}}</a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger" href="#">{{__('Hapus')}}</a
+                                                        <a class="dropdown-item text-danger call-delete-modal" href="#" data-id="{{ $value->id }}">{{__('Hapus')}}</a
                                                         >
                                                       </li>
                                                     </ul>

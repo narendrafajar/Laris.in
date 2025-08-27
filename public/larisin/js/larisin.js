@@ -51,7 +51,7 @@ $('#myModal').on('shown.bs.modal', function () {
     $("#basic-datatables").DataTable({});
 
     $(".datatable-class").DataTable({
-      pageLength: 5,
+      pageLength: 50,
       initComplete: function () {
         this.api()
           .columns()
@@ -84,7 +84,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
     // Add Row
     $("#add-row").DataTable({
-      pageLength: 5,
+      pageLength: 50,
     });
 
     var action =
@@ -170,7 +170,7 @@ const confirmDestroy = () => {
       },
   });
   deleteId = $('.call-delete-modal').data('id');
-  deleteRoute =  window.location.pathname + "/delete-transaction"
+  deleteRoute =  window.location.pathname + "/delete"
   // console.log(deleteRoute,deleteId);
 
   $.ajax({

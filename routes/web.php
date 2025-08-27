@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/product',[ProductController::class,'index'])->name('product');
     Route::get('/add-product',[ProductController::class,'create'])->name('add_product');
     Route::post('/store-product',[ProductController::class,'store'])->name('store_product');
+    Route::delete('/product/delete',[ProductController::class,'destroy'])->name('delete_product');
 
     // Kontak
     Route::get('/kontak',[KontakController::class,'index'])->name('kontak');
@@ -54,7 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/consignor-sale/complete-consginor/{id}',[ConsignorSaleController::class,'complete_consignors'])->name('complete_jual_titip');
     Route::post('/consignor-sale/update-consignor',[ConsignorSaleController::class,'updateComplete'])->name('update_jual_titip');
     Route::get('/consignor-sale/detail-consginor/{id}',[ConsignorSaleController::class,'detail_consignors'])->name('detail_jual_titip');
-    Route::delete('/consignor-sale/delete-transaction',[ConsignorSaleController::class,'delete'])->name('delete_jual_titip');
+    Route::delete('/consignor-sale/delete',[ConsignorSaleController::class,'destroy'])->name('delete_jual_titip');
 
     // Penjualan Langsung
     Route::get('/direct-sale',[DirectSaleController::class,'index'])->name('jual_langsung');

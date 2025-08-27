@@ -61,8 +61,8 @@
                                             <td class="text-center">{{$no++}}</td>
                                             <td class="text-center"><b>{{$value->consignor_code}}</b></td>
                                             <td>{{$value->kontak->contact_name}}</td>
-                                            <td class="text-center">{{date('d M Y H:i:s',strtotime($value->consignor_date_store))}}</td>
-                                            <td class="text-center">{{$value->consignor_date_pickup != NULL ? date('d M Y H:i:s',strtotime($value->consignor_date_pickup)):'Belum Diambil'}}</td>
+                                            <td class="text-center">{{date('d M Y',strtotime($value->consignor_date_store))}}</td>
+                                            <td class="text-center">{{$value->consignor_date_pickup != NULL ? date('d M Y',strtotime($value->consignor_date_pickup)):'Belum Diambil'}}</td>
                                             
                                             <td class="text-end">{{formatRupiah($value->totalPenjualan)}}</td>                                            
                                             <td class="text-center w-1">
